@@ -15,7 +15,7 @@ export function Card({
 }) {
   return (
     <section
-      className={`rounded-2xl border border-line bg-surface p-5 shadow-sm sm:p-6 ${className}`}
+      className={`rounded-lg border border-line bg-surface p-5 ${className}`}
     >
       <div className="mb-4 flex items-start gap-3">
         {step !== undefined && (
