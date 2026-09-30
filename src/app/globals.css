@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/*
+ * Identidade visual do Encaixe.
+ * Paleta clara: fundo creme, verde-água como cor de marca e âmbar como destaque.
+ */
+@theme {
+  --color-canvas: #faf9f5;
+  --color-surface: #ffffff;
+  --color-ink: #1f2a37;
+  --color-muted: #6b7280;
+  --color-line: #e7e5df;
+
+  --color-brand-50: #eef7f4;
+  --color-brand-100: #d6eee7;
+  --color-brand-200: #afdccf;
+  --color-brand-400: #4fae97;
+  --color-brand-500: #2f8f7a;
+  --color-brand-600: #267563;
+  --color-brand-700: #1f5d4f;
+
+  --color-accent-50: #fdf6e6;
+  --color-accent-100: #fbe9bf;
+  --color-accent-400: #f2b84b;
+  --color-accent-600: #b7812a;
+
+  --color-danger-50: #fdeeee;
+  --color-danger-500: #d9534f;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
