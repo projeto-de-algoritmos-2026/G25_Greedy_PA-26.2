@@ -1,9 +1,5 @@
 export const MINUTES_PER_DAY = 24 * 60;
 
-export function toMinutes(hours: number, minutes: number): number {
-  return Math.max(0, Math.floor(hours) * 60 + Math.floor(minutes));
-}
-
 /** 150 -> "2h 30min", 45 -> "45min", 120 -> "2h" */
 export function formatMinutes(total: number): string {
   const rounded = Math.round(total);
