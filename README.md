@@ -7,7 +7,7 @@
 
 | Matrícula | Aluno |
 | --------- | ----- |
-| xx/xxxxxxx | Nome do aluno 1 |
+| 232027494 | Júlia Santana Campos |
 | xx/xxxxxxx | Nome do aluno 2 |
 
 ## Sobre
@@ -35,7 +35,7 @@ O app resolve o problema com o **Knapsack fracionário**, um algoritmo guloso, e
 
 ## O algoritmo
 
-### Knapsack fracionário (guloso)
+### Knapsack
 
 Arquivo: [`src/lib/knapsack/fractional.ts`](src/lib/knapsack/fractional.ts)
 
@@ -59,8 +59,6 @@ para cada tarefa t na ordem:
 
 Em caso de empate na razão, vence a tarefa com prioridade maior e, depois, a mais curta.
 
-**Por que o guloso funciona aqui?** Na versão fracionária, trocar qualquer minuto de uma tarefa de razão maior por um minuto de uma tarefa de razão menor nunca aumenta o valor total. Então encher a mochila na ordem das razões dá a solução ótima. O argumento completo de troca está em Kleinberg e Tardos, *Algorithm Design*, capítulo 4.
-
 **Complexidade**: O(n log n), por causa da ordenação. O laço de preenchimento é O(n).
 
 **Passos mostrados na tela**:
@@ -76,9 +74,6 @@ Em caso de empate na razão, vence a tarefa com prioridade maior e, depois, a ma
 | `skip` | Não sobrou tempo, a tarefa fica de fora |
 | `done` | Mostra a agenda final e o valor total |
 
-### Por que não o Knapsack 0/1?
-
-Se cada tarefa tivesse que entrar inteira, o problema viraria o Knapsack 0/1, e aí a estratégia gulosa pode errar: pegar a tarefa de melhor razão pode deixar um "buraco" de tempo que nenhuma outra tarefa inteira preenche. O 0/1 precisa de programação dinâmica. Este projeto trata só da versão fracionária, em que o guloso é ótimo.
 
 ### Exemplo
 
