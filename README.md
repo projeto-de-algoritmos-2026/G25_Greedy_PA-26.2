@@ -8,11 +8,11 @@
 | Matrícula | Aluno |
 | --------- | ----- |
 | 232027494 | Júlia Santana Campos |
-| xx/xxxxxxx | Nome do aluno 2 |
+| 231011266 | Diogo Oliveira Ferreira |
 
 ## Sobre
 
-O Encaixe é um planejador de tarefas para um único dia. A pessoa escolhe o dia, informa quanto tempo tem livre (ou reservado) para trabalhar e cadastra as tarefas que gostaria de fazer. Cada tarefa tem um nome, uma duração em horas e minutos e uma prioridade de 1 a 10, em que o número maior indica a tarefa mais urgente.
+O Encaixe é um planejador de tarefas para um único dia. A pessoa informa quanto tempo tem livre (ou reservado) para trabalhar e cadastra as tarefas que gostaria de fazer. Cada tarefa tem um nome, uma duração em minutos e uma prioridade de 1 a 10, em que o número maior indica a tarefa mais urgente.
 
 Quase sempre a soma das tarefas passa do tempo disponível. Decidir o que entra no dia é uma instância do **problema da mochila (Knapsack)**:
 
@@ -24,14 +24,14 @@ Quase sempre a soma das tarefas passa do tempo disponível. Decidir o que entra 
 | Valor do item | Prioridade da tarefa (1 a 10) |
 | Objetivo | Maximizar a soma das prioridades sem passar do tempo livre |
 
-O app resolve o problema com o **Knapsack fracionário**, um algoritmo guloso, e mostra cada passo na tela com controles de reproduzir, pausar, avançar e voltar. Na versão fracionária uma tarefa pode ser feita em parte: se sobram 40 minutos e a próxima tarefa leva 1 hora, o algoritmo sugere fazer 67% dela.
+O app resolve o problema com o **Knapsack fracionário**, um algoritmo guloso, e mostra cada passo na tela, um a cada 1,5 segundo, com botões de pausar e reiniciar. Na versão fracionária uma tarefa pode ser feita em parte: se sobram 40 minutos e a próxima tarefa leva 1 hora, o algoritmo sugere fazer 67% dela.
 
 ## Como usar
 
-1. **Escolha o dia**: selecione a data e o tempo livre (horas e minutos). Esse tempo é a capacidade da mochila.
-2. **Liste as tarefas**: preencha nome, duração e prioridade e clique em "Adicionar tarefa". O botão "Carregar exemplo" preenche um dia pronto para testar.
+1. **Tempo livre**: informe o tempo livre em minutos. Esse tempo é a capacidade da mochila.
+2. **Liste as tarefas**: preencha nome, duração (em minutos) e prioridade e clique em "Adicionar tarefa". O botão "Carregar exemplo" preenche um dia pronto para testar.
 3. **Rode o algoritmo**: clique em "Rodar algoritmo".
-4. **Acompanhe o passo a passo**: use "Reproduzir" para animar ou "Avançar" e "Voltar" para ir no seu ritmo. A barra "Seu dia" mostra o tempo sendo ocupado. No último passo aparece a agenda sugerida, com as tarefas que ficaram para outro dia.
+4. **Acompanhe o passo a passo**: a animação começa sozinha, em velocidade fixa. Use "Pausar" para parar num passo e "Reiniciar" para ver desde o começo. A barra "Seu dia" mostra o tempo sendo ocupado. No último passo aparece a agenda sugerida, com as tarefas que ficaram para outro dia.
 
 ## O algoritmo
 
@@ -77,7 +77,7 @@ Em caso de empate na razão, vence a tarefa com prioridade maior e, depois, a ma
 
 ### Exemplo
 
-O botão "Carregar exemplo" monta este dia com **5h30 livres** e **8h30 de tarefas**:
+O botão "Carregar exemplo" monta este dia com **330 minutos livres (5h30)** e **8h30 de tarefas**:
 
 | Tarefa | Duração | Prioridade | Prioridade / min |
 | ------ | ------- | ---------- | ---------------- |
@@ -121,17 +121,17 @@ src/
 │   └── icon.svg              # favicon
 ├── components/
 │   ├── Planner.tsx           # estado da tela e orquestração
-│   ├── DayCard.tsx           # passo 1: dia e tempo livre
+│   ├── DayCard.tsx           # passo 1: tempo livre
 │   ├── TaskForm.tsx          # passo 2: formulário de tarefa
 │   ├── TaskList.tsx          # passo 2: lista de tarefas cadastradas
-│   ├── StepControls.tsx      # reproduzir, pausar, avançar, voltar, velocidade
+│   ├── StepControls.tsx      # pausar, continuar, reiniciar
 │   ├── DayBar.tsx            # a "mochila": barra do dia sendo ocupada
 │   ├── FractionalView.tsx    # visualização do guloso fracionário
 │   ├── ResultSummary.tsx     # agenda final e valor total
 │   ├── Header.tsx
 │   └── ui.tsx                # Card, Button, Field
 ├── hooks/
-│   └── useStepPlayer.ts      # controla o índice do passo atual e o autoplay
+│   └── useStepPlayer.ts      # avança os passos sozinho em velocidade fixa
 └── lib/
     ├── knapsack/
     │   ├── types.ts          # Task, Allocation
@@ -139,14 +139,14 @@ src/
     │   └── index.ts
     ├── example.ts            # dia de exemplo
     ├── priority.ts           # cores e rótulos de prioridade
-    └── time.ts               # conversão e formatação de minutos
+    └── time.ts               # formatação de minutos
 ```
 
 ### Como a visualização funciona
 
 O algoritmo não sabe nada de interface. Enquanto executa, ele grava um **passo** a cada decisão importante. Cada passo é uma foto do estado naquele momento: mensagem explicativa, tarefa em destaque, tempo restante, o que já entrou na mochila.
 
-A tela só guarda qual é o passo atual (`useStepPlayer`) e desenha a foto correspondente. Por isso voltar um passo é trivial, e o algoritmo roda uma única vez, quando você clica em "Rodar algoritmo".
+A tela só guarda qual é o passo atual (`useStepPlayer`) e desenha a foto correspondente. Por isso reiniciar a animação é trivial, e o algoritmo roda uma única vez, quando você clica em "Rodar algoritmo".
 
 ```
 Tarefas + capacidade
