@@ -207,6 +207,14 @@ npm run typecheck  # checagem de tipos
 
 O que falta está descrito em [`docs/PENDENTE.md`](docs/PENDENTE.md).
 
+## Vídeo explicativo
+
+O vídeo apresenta o Encaixe e explica o algoritmo guloso usado no projeto.
+
+**▶️ [Assistir ao vídeo explicativo do Encaixe](docs/v%C3%ADdeoPAtrabalho2.mp4)** (MP4, cerca de 37 MB)
+
+Se o player não abrir no navegador, [baixe o vídeo diretamente](https://github.com/projeto-de-algoritmos-2026/G25_Greedy_PA-26.2/raw/main/docs/v%C3%ADdeoPAtrabalho2.mp4) e assista no seu reprodutor de mídia.
+
 ## Referências
 
 - KLEINBERG, Jon; TARDOS, Éva. *Algorithm Design*. Pearson, 2005. Capítulo 4 (algoritmos gulosos).
